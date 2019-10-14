@@ -20,28 +20,42 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({String title});
-  
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(children: <Widget>[
-        CupertinoButton(
-          child: Text('文本'), 
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => TextPage()));
-          },
-          color: Colors.lightBlue,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("demo"),
+        elevation: 0,
+      ),
+      body: Container(
+        margin: EdgeInsets.all(15),
+        child: Column(
+          children: <Widget>[
+            CupertinoButton(
+              child: Text('文本'),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => TextPage()));
+              },
+              color: Colors.lightBlue,
+            ),
+            CupertinoButton(
+              child: Text('图片'),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => ImagePage(),
+                    ));
+              },
+              color: Colors.lightBlue,
+            )
+          ],
         ),
-        CupertinoButton(
-          child: Text('图片'),
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(
-              builder: (BuildContext context) => ImagePage(),
-            ));
-          },
-          color: Colors.lightBlue,
-        )
-      ],),
+      ),
     );
   }
 }
