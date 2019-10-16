@@ -57,6 +57,33 @@ class TextPage extends StatelessWidget {
                 decorationStyle: TextDecorationStyle.dotted, // 文本装饰样式
               ),
             ),
+            RichText(
+              text: TextSpan(
+                  text: "Flutter",
+                  style: TextStyle(color: Colors.black),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: '富文本控件，可以对一段连续的文本设置不用的样式，实战中比较常见',
+                      style: TextStyle(
+                          color: Colors.blue,
+                          decoration: TextDecoration.underline,
+                          decorationStyle: TextDecorationStyle.double),
+                    ),
+                    TextSpan(
+                        text: 'allows you',
+                        style: TextStyle(
+                          fontSize: 25,
+                        )),
+                    TextSpan(
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                        text: 'on iOS and Android'),
+                    TextSpan(
+                        text: 'from a single codebase',
+                        style: TextStyle(shadows: [
+                          Shadow(color: Colors.black, offset: Offset(3, 3))
+                        ]))
+                  ]),
+            ),
           ],
         ),
       ),
