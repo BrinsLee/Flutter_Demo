@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_demo/imagepage/imagepage.dart';
 import 'package:flutter_demo/textpage/textpage.dart';
+import 'package:flutter_demo/containerpage/containerpage.dart';
 
 void main() => runApp(MyApp());
 
@@ -54,6 +55,20 @@ class MyHomePage extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (BuildContext context) => ImagePage(),
+                      ));
+                },
+                color: Colors.lightBlue,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+              child: CupertinoButton(
+                child: Text('容器'),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => ContainerPage(),
                       ));
                 },
                 color: Colors.lightBlue,
