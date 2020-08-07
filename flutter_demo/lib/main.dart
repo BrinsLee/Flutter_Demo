@@ -3,6 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_demo/imagepage/imagepage.dart';
 import 'package:flutter_demo/textpage/textpage.dart';
 import 'package:flutter_demo/containerpage/containerpage.dart';
+import 'package:flutter_demo/iconpage/IconPage.dart';
+import 'package:flutter_demo/listpage/ListPage.dart';
+import 'package:flutter_demo/gridpage/GridPage.dart';
+
+
 
 void main() => runApp(MyApp());
 
@@ -69,6 +74,48 @@ class MyHomePage extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (BuildContext context) => ContainerPage(),
+                      ));
+                },
+                color: Colors.lightBlue,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+              child: CupertinoButton(
+                child: Text('图标'),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => IconPage(),
+                      ));
+                },
+                color: Colors.lightBlue,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+              child: CupertinoButton(
+                child: Text('列表'),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => ListPage(),
+                      ));
+                },
+                color: Colors.lightBlue,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+              child: CupertinoButton(
+                child: Text('网格列表'),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => GridPage(),
                       ));
                 },
                 color: Colors.lightBlue,
