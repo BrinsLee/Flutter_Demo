@@ -25,7 +25,7 @@ class _ProgressPageState extends State<ProgressPage>
     return SingleChildScrollView(
       padding: EdgeInsets.only(top: 50),
       child: Column(
-        children: [
+        children: [ 
           Padding(
             padding: EdgeInsets.all(16),
             child: LinearProgressIndicator(
