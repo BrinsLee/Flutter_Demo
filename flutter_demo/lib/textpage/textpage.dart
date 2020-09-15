@@ -6,6 +6,19 @@ class TextPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("文本样式"),
+        leading: Icon(Icons.ac_unit),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.adb),
+            onPressed: () {},
+            tooltip: "adb",
+          ),
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () {},
+            tooltip: '添加',
+          )
+        ],
       ),
       body: Center(
         child: Column(

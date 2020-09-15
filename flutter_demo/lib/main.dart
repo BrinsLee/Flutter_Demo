@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_demo/imagepage/imagepage.dart';
+import 'package:flutter_demo/progresspage/progresspage.dart';
 import 'package:flutter_demo/textpage/textpage.dart';
 import 'package:flutter_demo/containerpage/containerpage.dart';
 import 'package:flutter_demo/iconpage/IconPage.dart';
 import 'package:flutter_demo/listpage/ListPage.dart';
 import 'package:flutter_demo/gridpage/GridPage.dart';
-
-
+import 'package:flutter_demo/bottomnavigatorpage/BottomNavigatorPage.dart';
 
 void main() => runApp(MyApp());
 
@@ -16,6 +16,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      routes: {
+        "bottom_page": (context) => BottomNavigatorPage(),
+        "progress_page": (context) => ProgressPage()
+      },
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -117,6 +121,26 @@ class MyHomePage extends StatelessWidget {
                       MaterialPageRoute(
                         builder: (BuildContext context) => GridPage(),
                       ));
+                },
+                color: Colors.lightBlue,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+              child: CupertinoButton(
+                child: Text('底部'),
+                onPressed: () {
+                  Navigator.pushNamed(context, "bottom_page");
+                },
+                color: Colors.lightBlue,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+              child: CupertinoButton(
+                child: Text('进度条'),
+                onPressed: () {
+                  Navigator.pushNamed(context, "progress_page");
                 },
                 color: Colors.lightBlue,
               ),
