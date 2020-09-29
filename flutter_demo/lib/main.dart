@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_demo/animatedswitcher/animatedswitcher.dart';
 import 'package:flutter_demo/animationpage/animationpage.dart';
 import 'package:flutter_demo/animationpage/animationstartpage.dart';
+import 'package:flutter_demo/customwidget/combinationwidgetpage.dart';
 import 'package:flutter_demo/imagepage/imagepage.dart';
 import 'package:flutter_demo/progresspage/progresspage.dart';
 import 'package:flutter_demo/provider/count_model.dart';
@@ -38,7 +40,8 @@ class MyApp extends StatelessWidget {
         "provider_page": (context) => ProviderPage(),
         "second_page": (context) => SecondPage(),
         "animation_page": (context) => AnimationPage(),
-        "stagger_animation_page": (context) => StaggerRoute()
+        "stagger_animation_page": (context) => StaggerRoute(),
+        "custom_page": (context) => CombinationWidgetPage()
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -93,7 +96,10 @@ class MyHomePage extends StatelessWidget {
                   child: Hero(
                     tag: "image",
                     child: ClipOval(
-                      child: Image.asset("images/icon_cup.png",width: 50.0,),
+                      child: Image.asset(
+                        "images/icon_cup.png",
+                        width: 50.0,
+                      ),
                     ),
                   ),
                   onTap: () {
@@ -207,6 +213,30 @@ class MyHomePage extends StatelessWidget {
                   child: Text('staggeranimation'),
                   onPressed: () {
                     Navigator.pushNamed(context, "stagger_animation_page");
+                  },
+                  color: Colors.lightBlue,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                child: CupertinoButton(
+                  child: Text('animationSwitcher'),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                AnimatedSwitcherCounterPage()));
+                  },
+                  color: Colors.lightBlue,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                child: CupertinoButton(
+                  child: Text('自定义组件'),
+                  onPressed: () {
+                    Navigator.pushNamed(context, "custom_page");
                   },
                   color: Colors.lightBlue,
                 ),
