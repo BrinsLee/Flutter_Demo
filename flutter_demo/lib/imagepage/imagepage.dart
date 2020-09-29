@@ -27,13 +27,15 @@ class ImagePage extends StatelessWidget {
             children: <Widget>[
               Text("加载资源图片"),
               Padding(
-                padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                child: Image.asset(
-                  "images/icon_cup.png",
-                  width: 100,
-                  height: 100,
-                ),
-              ),
+                  padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                  child: Hero(
+                    tag: "image",
+                    child: Image.asset(
+                      "images/icon_cup.png",
+                      width: 100,
+                      height: 100,
+                    ),
+                  )),
               Container(
                 width: 1,
                 height: 10,

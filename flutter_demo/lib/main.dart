@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_demo/animationpage/animationpage.dart';
+import 'package:flutter_demo/animationpage/animationstartpage.dart';
 import 'package:flutter_demo/imagepage/imagepage.dart';
 import 'package:flutter_demo/progresspage/progresspage.dart';
 import 'package:flutter_demo/provider/count_model.dart';
@@ -33,8 +35,10 @@ class MyApp extends StatelessWidget {
       routes: {
         "bottom_page": (context) => BottomNavigatorPage(),
         "progress_page": (context) => ProgressPage(),
-        "provider_page":(context) => ProviderPage(),
-        "second_page" : (context) => SecondPage()
+        "provider_page": (context) => ProviderPage(),
+        "second_page": (context) => SecondPage(),
+        "animation_page": (context) => AnimationPage(),
+        "stagger_animation_page": (context) => StaggerRoute()
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -54,127 +58,161 @@ class MyHomePage extends StatelessWidget {
         title: Text("demo"),
         elevation: 0,
       ),
-      body: Container(
-        margin: EdgeInsets.all(15),
-        alignment: Alignment.center,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              child: CupertinoButton(
-                child: Text('文本'),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => TextPage()));
-                },
-                color: Colors.lightBlue,
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.all(15),
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                child: CupertinoButton(
+                  child: Text('文本'),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        PageRouteBuilder(
+                            transitionDuration: Duration(milliseconds: 500),
+                            pageBuilder: (BuildContext context,
+                                Animation<double> animation,
+                                Animation<double> secondaryAnimation) {
+                              return FadeTransition(
+                                opacity: animation,
+                                child: TextPage(),
+                              );
+                            }));
+                  },
+                  color: Colors.lightBlue,
+                ),
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
               ),
-              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-              child: CupertinoButton(
-                child: Text('图片'),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (BuildContext context) => ImagePage(),
-                      ));
-                },
-                color: Colors.lightBlue,
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                child: InkWell(
+                  child: Hero(
+                    tag: "image",
+                    child: ClipOval(
+                      child: Image.asset("images/icon_cup.png",width: 50.0,),
+                    ),
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => ImagePage(),
+                        ));
+                  },
+                ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-              child: CupertinoButton(
-                child: Text('容器'),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (BuildContext context) => ContainerPage(),
-                      ));
-                },
-                color: Colors.lightBlue,
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                child: CupertinoButton(
+                  child: Text('容器'),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => ContainerPage(),
+                        ));
+                  },
+                  color: Colors.lightBlue,
+                ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-              child: CupertinoButton(
-                child: Text('图标'),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (BuildContext context) => IconPage(),
-                      ));
-                },
-                color: Colors.lightBlue,
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                child: CupertinoButton(
+                  child: Text('图标'),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => IconPage(),
+                        ));
+                  },
+                  color: Colors.lightBlue,
+                ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-              child: CupertinoButton(
-                child: Text('列表'),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (BuildContext context) => ListPage(),
-                      ));
-                },
-                color: Colors.lightBlue,
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                child: CupertinoButton(
+                  child: Text('列表'),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => ListPage(),
+                        ));
+                  },
+                  color: Colors.lightBlue,
+                ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-              child: CupertinoButton(
-                child: Text('网格列表'),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (BuildContext context) => GridPage(),
-                      ));
-                },
-                color: Colors.lightBlue,
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                child: CupertinoButton(
+                  child: Text('网格列表'),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => GridPage(),
+                        ));
+                  },
+                  color: Colors.lightBlue,
+                ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-              child: CupertinoButton(
-                child: Text('底部'),
-                onPressed: () {
-                  Navigator.pushNamed(context, "bottom_page");
-                },
-                color: Colors.lightBlue,
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                child: CupertinoButton(
+                  child: Text('底部'),
+                  onPressed: () {
+                    Navigator.pushNamed(context, "bottom_page");
+                  },
+                  color: Colors.lightBlue,
+                ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-              child: CupertinoButton(
-                child: Text('进度条'),
-                onPressed: () {
-                  Navigator.pushNamed(context, "progress_page");
-                },
-                color: Colors.lightBlue,
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                child: CupertinoButton(
+                  child: Text('进度条'),
+                  onPressed: () {
+                    Navigator.pushNamed(context, "progress_page");
+                  },
+                  color: Colors.lightBlue,
+                ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-              child: CupertinoButton(
-                child: Text('provider'),
-                onPressed: () {
-                  Navigator.pushNamed(context, "provider_page");
-                },
-                color: Colors.lightBlue,
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                child: CupertinoButton(
+                  child: Text('provider'),
+                  onPressed: () {
+                    Navigator.pushNamed(context, "provider_page");
+                  },
+                  color: Colors.lightBlue,
+                ),
               ),
-            )
-          ],
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                child: CupertinoButton(
+                  child: Text('animation'),
+                  onPressed: () {
+                    Navigator.pushNamed(context, "animation_page");
+                  },
+                  color: Colors.lightBlue,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                child: CupertinoButton(
+                  child: Text('staggeranimation'),
+                  onPressed: () {
+                    Navigator.pushNamed(context, "stagger_animation_page");
+                  },
+                  color: Colors.lightBlue,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
